@@ -30,6 +30,6 @@ require [
 		splashView = new SplashView
 			afterComplete: ->
 				appRouter = new MainRouter
-
+				
 				Backbone.history.start
 					pushState: true

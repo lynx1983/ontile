@@ -6,14 +6,38 @@
 		<script data-main="/js/app" type="text/javascript" src="js/lib/requirejs/require.js"></script>
 	</head>
 	<body>
+		<div id="main-menu"></div>
 		<div id="content">
 		</div>
 		<script type="text/template" id="splash-screen-template">
 			<div class="content splash">
-				<h1>Alexey Nikolaev</h1>
+				<div class="title">
+					<h1>Alexey Nikolaev</h1>
+					<h3>photographer</h3>
+				</div>
 				<div class="ui_progress-bar">
 					<div class="ui_indicator"></div>
 				</div>
+			</div>
+		</script>
+		<script type="text/template" id="main-menu-template">
+			<nav>
+				<span class="title vertical">Alexey Nikolaev</span>
+				<p class="title horizontal">Alexey Nikolaev</br><span>photographer</span></p>
+				<ul class="ui_menu">
+					<li><a href="#">Home</a></li>
+					<li><a href="#">Blog</a></li>
+					<li><a href="#">Stories</a>
+						<ul class="ui_menu ui_sub-menu">
+							<li><a href="#">Story 1</a></li>
+							<li><a href="#">Story 2</a></li>
+						</ul>
+					</li>
+					<li><a href="#">About</a></li>
+			</nav>
+		</script>
+		<script type="text/template" id="main-screen-template">
+			<div class="content index">
 			</div>
 		</script>
 	</body>

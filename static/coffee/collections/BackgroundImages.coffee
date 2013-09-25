@@ -7,4 +7,4 @@ define [
 
 		model: BackgroundImageModel
 
-		initialize:->
+	new BackgroundImagesCollection

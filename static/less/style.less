@@ -16,13 +16,21 @@ html, body {
 }
 
 .splash {
-	h1 {
+	.title {
 		position: absolute;
 		text-align: center;
 		left: 0;
 		right: 0;
 		top: 20%;
-		font-size: 3em;
+
+		h1 {
+			font-size: 3em;
+			padding-bottom: 10px;
+		}
+
+		h3 {
+
+		}
 	}
 
 	.ui_progress-bar {
@@ -44,4 +52,77 @@ html, body {
 			.transition (width .2s ease-in);
 		}
 	}
+}
+
+#main-menu nav {
+	width: 200px;
+	background: #000000;
+	height: 100%;
+	left: -160px;
+	position: absolute;
+	overflow: hidden;
+	.transition (left .5s ease);
+
+	p.title.horizontal {
+		padding: 20px 20px;
+		display: inline-block;
+
+		span {
+			font-size: .8em;
+			float: right;
+			display: inline-block;
+		}
+	}
+
+	ul.ui_menu {
+		padding: 20px;
+
+		li {
+			margin: 10px 0;
+
+			a {
+				color: #808080;
+				text-decoration: none;
+
+				&:hover {
+					color: #FFFFFF;
+				}
+			}
+
+			.ui_sub-menu {
+				padding: 0 15px;
+				margin-left: 15px;
+				border-left: 1px solid #FFFFFF;
+			}
+		}
+	}
+
+	.title.vertical {
+		display: block;
+		height: 40px;
+		line-height: 40px;
+		font-size: 24px;
+		text-align: right;
+		padding: 0 20px;
+		position: absolute;
+		right: 0;
+		top: -40px;
+		.rotate (-90deg);
+		.transform-origin (100% 100%);
+		.transition (right .5s ease);
+	}
+
+	&:hover {
+		left: 0;
+
+		.title.vertical {
+			right: -40px;
+		}
+	}
+}
+
+.index {
+	background: #808080;
+
+
 }

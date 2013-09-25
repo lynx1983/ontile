@@ -51,6 +51,22 @@
       -moz-border-radius-bottomleft: @radius;
           border-bottom-left-radius: @radius;
 }
+.rotate (@degrees) {
+  -webkit-transform: rotate(@degrees);
+      -ms-transform: rotate(@degrees); // IE9+
+          transform: rotate(@degrees);
+}
+.transform-origin (@origin){
+  -webkit-transform-origin: @origin;
+     -moz-transform-origin: @origin;
+          transform-origin: @origin;
+}
+.opacity (@opacity) {
+  opacity: @opacity;
+  // IE8 filter
+  @opacity-ie: (@opacity * 100);
+  filter: ~"alpha(opacity=@{opacity-ie})";
+}
 .no-selection () {
   -webkit-user-select: none;
   -moz-user-select: none;

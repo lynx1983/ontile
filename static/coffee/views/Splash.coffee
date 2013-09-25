@@ -5,7 +5,7 @@ define [
 	class SplashView extends AbstractView
 		el: $("#content")
 
-		collection: new BackgroundImagesCollection
+		collection: BackgroundImagesCollection
 
 		attributes:
 			class: "ui_splash"
@@ -32,6 +32,8 @@ define [
 		onItemLoaded:->
 			@collection.loaded++
 			do @progressBarRender
+			if @collection.loaded is @collection.length
+				do @afterComplete
 
 		progressBarRender:->
 			@$indicator.css "width", "#{@collection.loaded / @collection.length * 100}%"
