@@ -1,0 +1,23 @@
+{
+  "name": "ontile",
+  "version": "0.0.0",
+  "authors": [
+    "Pavlov Max <m.a.pavlov.tver@gmail.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "requirejs": "~2.1.8",
+    "underscore": "~1.5.2",
+    "backbone": "~1.0.0",
+    "jquery": "~2.0.3",
+    "requirejs-domready": "~2.0.1"
+  }
+}
