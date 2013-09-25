@@ -1,8 +1,10 @@
 define [
 	"backbone"
-], (Backbone)->
+	"../models/BackgroundImage"
+], (Backbone, BackgroundImageModel)->
 	class BackgroundImagesCollection extends Backbone.Collection
 		url: "/json/background_images.json"
 
+		model: BackgroundImageModel
+
 		initialize:->
-			do @fetch

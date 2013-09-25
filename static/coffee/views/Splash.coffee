@@ -14,6 +14,27 @@ define [
 
 		initialize:->
 			do @render
+			@$indicator = @$el.find ".ui_indicator"
+			@listenTo @collection, "reset", @onItemAdd
+			@collection.loaded = 0
+			@collection.fetch
+				reset: true
+
+		onItemAdd:->
+			console.log "Item added"
+			do @progressBarRender
+			@collection.each (item)=>
+				image = $('<img>')
+				image.on "load", _.bind(@onItemLoaded, @)
+				image.attr("src", item.get "src")
+				item.set "image", image
+
+		onItemLoaded:->
+			@collection.loaded++
+			do @progressBarRender
+
+		progressBarRender:->
+			@$indicator.css "width", "#{@collection.loaded / @collection.length * 100}%"
 
 		render:->
 			@$el.html @template

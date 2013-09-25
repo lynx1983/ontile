@@ -17,8 +17,11 @@ html, body {
 
 .splash {
 	h1 {
+		position: absolute;
 		text-align: center;
-		padding-top: 25%;
+		left: 0;
+		right: 0;
+		top: 20%;
 		font-size: 3em;
 	}
 
@@ -34,9 +37,11 @@ html, body {
 		padding: 3px;
 
 		.ui_indicator {
-			width: 50%;
+			width: 0;
 			background: #808080;
 			height: 100%;
+
+			.transition (width .2s ease-in);
 		}
 	}
 }
