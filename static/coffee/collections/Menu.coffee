@@ -19,5 +19,3 @@ define [
 					_.each itemChildren, (child)=>
 						children.push new MenuItemModel child
 				item.set "children", children
-
-	new MenuCollection

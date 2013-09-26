@@ -74,6 +74,7 @@ html, body {
 	p.title.horizontal {
 		padding: 20px 20px;
 		display: inline-block;
+		cursor: pointer;
 
 		span {
 			font-size: .8em;
@@ -132,12 +133,14 @@ html, body {
 		white-space: nowrap;
 		right: 0;
 		top: -40px;
+		cursor: pointer;
 		.rotate (-90deg);
 		.transform-origin (100% 100%);
 		.transition (right .5s ease);
 	}
 
-	&:hover {
+	&:hover,
+	&.opened {
 		left: 0;
 
 		.title.vertical {

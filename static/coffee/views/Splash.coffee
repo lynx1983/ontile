@@ -5,8 +5,6 @@ define [
 	class SplashView extends AbstractView
 		el: $("#content")
 
-		collection: BackgroundImagesCollection
-
 		attributes:
 			class: "ui_splash"
 
@@ -14,33 +12,27 @@ define [
 
 		initialize:->
 			do @render
+			@deferreds = []
 			@$indicator = @$el.find ".ui_indicator"
-			@listenTo @collection, "reset", @onItemAdd
-			@collection.loaded = 0
-			@collection.fetch
-				reset: true
+			@itemsToLoad = 0
+			@itemsLoaded = 0
+			@listenTo @vent, "progress:add", =>
+				@itemsToLoad++
+				do @progressBarRender
+			@listenTo @vent, "progress:complete", =>
+				@itemsLoaded++
+				do @progressBarRender
 
-		onItemAdd:->
-			console.log "Item added"
-			do @progressBarRender
-			if @collection.length
-				@collection.each (item)=>
-					image = $('<img>')
-					image.on "load", _.bind(@onItemLoaded, @)
-					image.attr("src", item.get "src")
-					item.set "image", image
-			else
-				@$indicator.css "width", "100%"
-				do @afterComplete
+		addInitOperation:(deferred)->
+			@deferreds.push deferred
 
-		onItemLoaded:->
-			@collection.loaded++
-			do @progressBarRender
-			if @collection.loaded is @collection.length
+		startInit:->
+			$.when.apply($, @deferreds).then =>
+				console.log "Bingo!!!"
 				do @afterComplete
 
 		progressBarRender:->
-			@$indicator.css "width", "#{@collection.loaded / @collection.length * 100}%"
+			@$indicator.css "width", "#{@itemsLoaded / @itemsToLoad * 100}%"
 
 		render:->
 			@$el.html @template

@@ -1,6 +1,7 @@
-define ["backbone"], (Backbone) ->
-
-	vent = _.extend {}, Backbone.Events
+define [
+	"backbone"
+	"../vent"
+], (Backbone, vent) ->
 
 	class AbstractView extends Backbone.View
 		constructor: (options)->

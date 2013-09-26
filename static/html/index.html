@@ -28,7 +28,7 @@
 			</nav>
 		</script>
 		<script type="text/template" id="main-menu-item-template">
-			<a href="<%=url%>"><%=name%></a>
+			<a href="<%=(url == "" ? "/" : url)%>"><%=name%></a>
 			<% if(children > 0) { %>
 				<ul class="ui_menu ui_sub-menu"></ul>
 			<% } %>
@@ -79,7 +79,9 @@
 		</script>
 		<script type="text/template" id="story-item-template">
 			<div class="ui_image-wrapper">
-				<img src="<%=thumb%>" />
+				<a href="">
+					<img src="<%=thumb%>" />
+				</a>
 			</div>
 		</script>
 	</body>

@@ -7,20 +7,18 @@ define [
 ], (Backbone, MainMenuView, IndexView, AboutView, StoryView)->
 
 	class AppRouter extends Backbone.Router
-		initialize:->
-			@mainMenu = new MainMenuView
+		initialize:(options)->
+			@vent = options.vent
 			@currentPage = null
-			@listenTo @, "route:before", @reset
-			@listenTo @, "route:after", @afterRoute
+			@listenTo @vent, "route:before", @reset
+			@listenTo @vent, "route:after", @afterRoute
 
 		route: (route, name, callback)->
 			callback = @[name] unless callback
 			super route, name, ->
-				@trigger "route:before"
-				@mainMenu.trigger "route:before"
+				@vent.trigger "route:before"
 				result = callback and callback.apply @, arguments
-				@mainMenu.trigger "route:after", Backbone.history.fragment
-				@trigger "route:after"
+				@vent.trigger "route:after", Backbone.history.fragment
 				result
 
 		routes:

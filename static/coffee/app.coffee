@@ -21,16 +21,17 @@ require [
 	"underscore"
 	"backbone"
 	"domReady"
+	"vent"
 	"views/Splash"	
+	"views/BackgroundImage"
+	"views/MainMenu"
 	"routers/Main"
-], (_, Backbone, domReady, SplashView, MainRouter)->
-	domReady ->
-		vent = _.extend({}, Backbone.Events);
-		
+], (_, Backbone, domReady, vent, SplashView, BackgroundImageView, MainMenuView, MainRouter)->
+	domReady ->		
 		splashView = new SplashView
 			afterComplete: ->
-				appRouter = new MainRouter
-				
+				vent.trigger "app:started"
+
 				Backbone.history.start
 					pushState: true
 
@@ -41,3 +42,15 @@ require [
 					if href.slice(protocol.length) isnt protocol
 						do e.preventDefault
 						appRouter.navigate href, true
+
+		appRouter = new MainRouter
+			vent: vent
+
+		backgroundImage = new BackgroundImageView
+
+		mainMenu = new MainMenuView
+
+		splashView.addInitOperation do backgroundImage.init
+		splashView.addInitOperation do mainMenu.init
+
+		do splashView.startInit

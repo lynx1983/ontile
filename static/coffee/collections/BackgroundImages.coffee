@@ -6,5 +6,3 @@ define [
 		url: "/json/background_images.json"
 
 		model: BackgroundImageModel
-
-	new BackgroundImagesCollection

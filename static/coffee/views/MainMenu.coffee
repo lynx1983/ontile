@@ -8,13 +8,35 @@ define [
 
 		template: _.template $("#main-menu-template").html()
 
-		collection: MenuCollection
+		collection: new MenuCollection
+
+		events:
+			"click .title.vertical": "showMenu"
+			"click .title.horizontal": "hideMenu"
 
 		initialize:->
-			@listenTo @collection, "sync", @render
-			@listenTo @, "route:before", @resetMenu
-			@listenTo @, "route:after", @setActiveItem
+			@deferred = new $.Deferred
+			@deferred.done =>
+				console.log "Menu complete"
+			@listenTo @vent, "route:before", @resetMenu
+			@listenTo @vent, "route:after", @setActiveItem
+			@listenTo @collection, "sync", @afterLoad
+			@listenTo @vent, "app:started", @render
+
+		init:->
+			@vent.trigger "progress:add"
 			do @collection.fetch
+			@deferred
+
+		afterLoad:->
+			@vent.trigger "progress:complete"
+			do @deferred.resolve
+
+		showMenu:->
+			@$el.find("nav").addClass "opened"
+
+		hideMenu:->
+			@$el.find("nav").removeClass "opened"
 
 		resetMenu:->
 			@$el.find("li.active").removeClass "active"
