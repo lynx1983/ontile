@@ -16,8 +16,6 @@ define [
 
 		initialize:->
 			@deferred = new $.Deferred
-			@deferred.done =>
-				console.log "Menu complete"
 			@listenTo @vent, "route:before", @resetMenu
 			@listenTo @vent, "route:after", @setActiveItem
 			@listenTo @collection, "sync", @afterLoad

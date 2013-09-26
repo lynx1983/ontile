@@ -1,9 +1,13 @@
 define [
+	"module"
 	"backbone"
 	"../models/MenuItem"
-], (Backbone, MenuItemModel)->
+], (module, Backbone, MenuItemModel)->
+
+	URL = module.config().url or "/wp-admin/admin-ajax.php?action=get_menu"
+
 	class MenuCollection extends Backbone.Collection
-		url: "/json/menu.json"
+		url: URL
 
 		model: MenuItemModel
 

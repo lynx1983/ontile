@@ -7,8 +7,6 @@ define [
 		initialize:->
 			@deferred = new $.Deferred
 			@imgDeferreds = []
-			@deferred.done ->
-				console.log "BG done"
 			@collection = new BackgroundImagesCollection
 			@listenTo @collection, "sync", @loadImages
 
@@ -29,10 +27,7 @@ define [
 					@vent.trigger "progress:add"
 
 				$.when.apply(@, @imgDeferreds).then =>
-					setTimeout =>
-						do @deferred.resolve
-					, 1000
-
+					do @deferred.resolve
 
 		init:->
 			@vent.trigger "progress:add"

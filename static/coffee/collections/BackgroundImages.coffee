@@ -1,8 +1,12 @@
 define [
+	"module"	
 	"backbone"
 	"../models/BackgroundImage"
-], (Backbone, BackgroundImageModel)->
+], (module, Backbone, BackgroundImageModel)->
+
+	URL = module.config().url or "/wp-admin/admin-ajax.php?action=get_background_images"
+
 	class BackgroundImagesCollection extends Backbone.Collection
-		url: "/json/background_images.json"
+		url: URL
 
 		model: BackgroundImageModel

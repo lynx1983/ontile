@@ -23,6 +23,7 @@ define [
 
 		routes:
 			"about(/)": "showAbout"
+			"stories/:id/:image/full(/)": "showStory"
 			"stories/:id(/)": "showStory"
 			"*path": "showIndex"			
 

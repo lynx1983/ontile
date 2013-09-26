@@ -15,6 +15,15 @@ requirejs.config(
 			exports: '_'
 		domReady:
 			exports: 'domReady'
+	config:
+		"collections/BackgroundImages":
+			url: "/json/background_images.json"
+		"collections/Menu":
+			url: "/json/menu.json"
+		"collections/Story":
+			url: "/json/story.json"
+		"models/About":
+			url: "/json/about.json"
 )
 
 require [

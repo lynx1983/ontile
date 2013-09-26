@@ -1,9 +1,13 @@
 define [
+	"module"
 	"backbone"
 	"../models/Story"
-], (Backbone, StoryModel)->
+], (module, Backbone, StoryModel)->
+
+	URL = module.config().url or "/wp-admin/admin-ajax.php?action=get_story"
+
 	class StoriesCollection extends Backbone.Collection
-		url: "/json/story.json"
+		url: URL
 
 		model: StoryModel
 

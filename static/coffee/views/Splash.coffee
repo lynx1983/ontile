@@ -28,7 +28,6 @@ define [
 
 		startInit:->
 			$.when.apply($, @deferreds).then =>
-				console.log "Bingo!!!"
 				do @afterComplete
 
 		progressBarRender:->
@@ -40,4 +39,6 @@ define [
 		
 		afterComplete:->
 			if _.isFunction @options.afterComplete
-				@options.afterComplete.apply @
+				setTimeout =>
+					@options.afterComplete.apply @
+				, 500

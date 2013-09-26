@@ -1,8 +1,12 @@
 define [
+	"module"
 	"backbone"
-], (Backbone)->
+], (module, Backbone)->
+
+	URL = module.config().url or "/wp-admin/admin-ajax.php?action=get_page&slug=about"
+
 	class AboutModel extends Backbone.Model
 		defaults:
 			content: ""
 		
-		url: "/json/about.json"
+		url: URL
