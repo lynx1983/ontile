@@ -17,7 +17,9 @@ define [
 			callback = @[name] unless callback
 			super route, name, ->
 				@trigger "route:before"
+				@mainMenu.trigger "route:before"
 				result = callback and callback.apply @, arguments
+				@mainMenu.trigger "route:after", Backbone.history.fragment
 				@trigger "route:after"
 				result
 

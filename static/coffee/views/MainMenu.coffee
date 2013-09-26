@@ -12,7 +12,15 @@ define [
 
 		initialize:->
 			@listenTo @collection, "sync", @render
+			@listenTo @, "route:before", @resetMenu
+			@listenTo @, "route:after", @setActiveItem
 			do @collection.fetch
+
+		resetMenu:->
+			@$el.find("li.active").removeClass "active"
+
+		setActiveItem:(route)->
+			@$el.find("a[href='/#{route}']").parents('li').addClass "active"
 
 		render:->
 			@$el.html @template

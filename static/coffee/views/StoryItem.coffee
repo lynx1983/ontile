@@ -11,6 +11,6 @@ define [
 
 		render:->
 			@$el.html @template
-				src: @model.get "src"
+				thumb: @model.get "thumb"
 				description: @model.get "description"
 			@

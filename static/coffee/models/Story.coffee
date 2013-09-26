@@ -3,5 +3,6 @@ define [
 ], (Backbone)->
 	class StoryModel extends Backbone.Model
 		defaults:
-			src: ""
+			image: ""
+			thumb: ""
 			description: ""
