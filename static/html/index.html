@@ -25,20 +25,38 @@
 				<span class="title vertical">Alexey Nikolaev</span>
 				<p class="title horizontal">Alexey Nikolaev</br><span>photographer</span></p>
 				<ul class="ui_menu">
-					<li><a href="#">Home</a></li>
-					<li><a href="#">Blog</a></li>
-					<li><a href="#">Stories</a>
-						<ul class="ui_menu ui_sub-menu">
-							<li><a href="#">Story 1</a></li>
-							<li><a href="#">Story 2</a></li>
-						</ul>
-					</li>
-					<li><a href="#">About</a></li>
 			</nav>
+		</script>
+		<script type="text/template" id="main-menu-item-template">
+			<a href="<%=url%>"><%=name%></a>
+			<% if(children > 0) { %>
+				<ul class="ui_menu ui_sub-menu"></ul>
+			<% } %>
 		</script>
 		<script type="text/template" id="main-screen-template">
 			<div class="content index">
 			</div>
+		</script>
+		<script type="text/template" id="about-screen-template">
+			<div class="content about">
+				<article class="about">
+					<%=content%>
+				</article>
+			</div>
+		</script>
+		<script type="text/template" id="story-screen-template">
+			<div class="content story">
+				<div class="ui_items-wrapper">
+					<div class="ui_items-inner-wrapper">
+						<div class="ui_nav ui_prev"></div>
+						<ul class="ui_items"></ul>
+						<div class="ui_nav ui_next"></div>
+					</div>
+				</div>
+			</div>
+		</script>
+		<script type="text/template" id="story-item-template">
+			<img src="<%=src%>" />
 		</script>
 	</body>
 </html>

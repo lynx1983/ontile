@@ -19,9 +19,12 @@ module.exports = (grunt) ->
 			img: "<%= resource.www %>/img"
 
 		less:
-			common:
+			debug:
 				files:
 					"<%= resource.root %>/<%= gruntconfig.debug %>/<%= resource.css %>/common.css": "static/less/common.less"
+			release:
+				files:
+					"<%= resource.root %>/<%= gruntconfig.release %>/<%= resource.css %>/common.css": "static/less/common.less"
 
 		clean:
 			files:
@@ -157,8 +160,8 @@ module.exports = (grunt) ->
 					keepalive: true
 	)
 
-	grunt.registerTask('css-build-dev', ['less'])
-	grunt.registerTask('css-build', ['css-build-dev'])
+	grunt.registerTask('css-build-dev', ['less:debug'])
+	grunt.registerTask('css-build', ['less:release'])
 	grunt.registerTask('js-build-dev', ['coffee'])
 	grunt.registerTask('js-build', ['coffee', 'requirejs'])
 	grunt.registerTask('build-dev', ['css-build-dev', 'js-build-dev'])
@@ -167,7 +170,7 @@ module.exports = (grunt) ->
 	grunt.registerTask('debug', ['clean', 'copy', 'build-dev'])
 	grunt.registerTask('debug-run', ['debug', 'connect:dev', 'watch'])
 	
-	grunt.registerTask('release', ['clean', 'copy', 'build', 'lineremover'])
+	grunt.registerTask('release', ['clean', 'copy', 'build',])
 	grunt.registerTask('release-run', ['release', 'connect:release'])
 	grunt.registerTask('release-package', ['release', 'compress'])
 

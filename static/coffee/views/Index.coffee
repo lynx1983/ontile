@@ -1,7 +1,7 @@
 define [
 	"./Abstract"
 ], (AbstractView)->
-	class MainView extends AbstractView
+	class IndexView extends AbstractView
 		el: $("#content")
 
 		template: _.template $("#main-screen-template").html()

@@ -23,11 +23,15 @@ define [
 		onItemAdd:->
 			console.log "Item added"
 			do @progressBarRender
-			@collection.each (item)=>
-				image = $('<img>')
-				image.on "load", _.bind(@onItemLoaded, @)
-				image.attr("src", item.get "src")
-				item.set "image", image
+			if @collection.length
+				@collection.each (item)=>
+					image = $('<img>')
+					image.on "load", _.bind(@onItemLoaded, @)
+					image.attr("src", item.get "src")
+					item.set "image", image
+			else
+				@$indicator.css "width", "100%"
+				do @afterComplete
 
 		onItemLoaded:->
 			@collection.loaded++

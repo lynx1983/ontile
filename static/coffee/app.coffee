@@ -33,3 +33,11 @@ require [
 				
 				Backbone.history.start
 					pushState: true
+
+				$(document).on 'click', 'a:not([data-bypass])', (e)->
+					href = $(@).attr "href"
+					protocol = "#{@protocol}//"
+
+					if href.slice(protocol.length) isnt protocol
+						do e.preventDefault
+						appRouter.navigate href, true
