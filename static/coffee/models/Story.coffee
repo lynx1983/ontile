@@ -1,10 +1,20 @@
 define [
+	"module"
 	"backbone"
-], (Backbone)->
+], (module, Backbone)->
+
+	URL = module.config().url or "/wp-admin/admin-ajax.php?action=get_story"
+
 	class StoryModel extends Backbone.Model
 		defaults:
 			id: null
-			story_id: null
-			image: ""
-			thumb: ""
+			title: ""
 			description: ""
+
+		url: URL
+
+		fetch:->
+			super
+				data:
+					id: @get "id"
+

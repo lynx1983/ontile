@@ -4,7 +4,9 @@ define [
 	"../views/Index"
 	"../views/About"
 	"../views/Story"
-], (Backbone, MainMenuView, IndexView, AboutView, StoryView)->
+	"../views/StoryImageList"
+	"../models/Story"
+], (Backbone, MainMenuView, IndexView, AboutView, StoryView, StoryImageListView, StoryModel)->
 
 	class AppRouter extends Backbone.Router
 		initialize:(options)->
@@ -23,7 +25,7 @@ define [
 
 		routes:
 			"about(/)": "showAbout"
-			"stories/:id/:image/full(/)": "showStory"
+			"stories/:id/:image/full(/)": "showFullImage"
 			"stories/:id(/)": "showStory"
 			"*path": "showIndex"			
 
@@ -35,7 +37,14 @@ define [
 
 		showStory:(id)->
 			@currentPage = new StoryView
+				model: new StoryModel
+					id: id
+				view: StoryImageListView
+
+		showFullImage:(id, image)->
+			@currentPage = new StoryView
 				id: id
+				mode: "full"
 
 		afterRoute:->
 			$("#content").removeClass("closed")

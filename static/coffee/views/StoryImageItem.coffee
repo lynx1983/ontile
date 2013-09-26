@@ -1,7 +1,7 @@
 define [
 	"./Abstract"
 ], (AbstractView)->
-	class StoryItemView extends AbstractView
+	class StoryImageItemView extends AbstractView
 		tagName: "li"
 
 		attributes:
@@ -12,7 +12,7 @@ define [
 		render:->
 			@$el.html @template
 				id: @model.get "id"
-				story_id: @model.get "story_id"
+				storyId: @model.get "storyId"
 				thumb: @model.get "thumb"
 				description: @model.get "description"
 			@

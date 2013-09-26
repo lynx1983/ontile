@@ -46,18 +46,21 @@
 		</script>
 		<script type="text/template" id="story-screen-template">
 			<div class="content story">
-				<div class="ui_items-wrapper">
-					<div class="ui_items-inner-wrapper">
-						<div class="ui_nav ui_prev"></div>
-						<ul class="ui_items"></ul>
-						<div class="ui_nav ui_next"></div>
-					</div>
-				</div>
 			</div>
 			<div class="ui_description">
 				<article>
+					<%=description%>
 				</article>
 				<div class="ui_button"></div>
+			</div>
+		</script>
+		<script type="text/template" id="story-image-list-template">
+			<div class="ui_items-wrapper">
+				<div class="ui_items-inner-wrapper">
+					<div class="ui_nav ui_prev"></div>
+					<ul class="ui_items"></ul>
+					<div class="ui_nav ui_next"></div>
+				</div>
 			</div>
 		</script>
 		<script type="text/template" id="story-screen-full-template">
@@ -79,7 +82,7 @@
 		</script>
 		<script type="text/template" id="story-item-template">
 			<div class="ui_image-wrapper">
-				<a href="/stories/<%=story_id%>/<%=id%>/full">
+				<a href="/stories/<%=storyId%>/<%=id%>/full">
 					<img src="<%=thumb%>" />
 				</a>
 			</div>
