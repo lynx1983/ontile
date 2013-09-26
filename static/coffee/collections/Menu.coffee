@@ -12,7 +12,6 @@ define [
 				success: @afterFetch
 
 		afterFetch:(collection)->
-			console.log "After fetch"
 			collection.each (item)->
 				children = []
 				itemChildren = item.get("children")

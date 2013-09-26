@@ -24,8 +24,8 @@ define [
 				result
 
 		routes:
-			"about": "showAbout"
-			"stories/:id": "showStory"
+			"about(/)": "showAbout"
+			"stories/:id(/)": "showStory"
 			"*path": "showIndex"			
 
 		showIndex:->
@@ -39,9 +39,9 @@ define [
 				id: id
 
 		afterRoute:->
-			$("#content").show()
+			$("#content").removeClass("closed")
 
 		reset:->
 			if @currentPage
 				delete @currentPage
-			$('#content').hide()
+			$("#content").addClass("closed")

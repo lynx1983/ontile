@@ -9,8 +9,14 @@ define [
 
 		template: _.template $("#story-item-template").html()
 
+		events:
+			"click img": "imageClick"
+
 		render:->
 			@$el.html @template
 				thumb: @model.get "thumb"
 				description: @model.get "description"
 			@
+
+		imageClick:->
+			@trigger "item:show", @
