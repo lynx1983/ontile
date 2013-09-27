@@ -4,11 +4,14 @@ define [
 ], (AbstractView, BackgroundImagesCollection)->
 	class BackgroundImageView extends AbstractView
 
+		el: $("#content")
+
 		initialize:->
 			@deferred = new $.Deferred
 			@imgDeferreds = []
 			@collection = new BackgroundImagesCollection
 			@listenTo @collection, "sync", @loadImages
+			@listenTo @vent, "app:started", @render
 
 		loadImages:->
 			@vent.trigger "progress:complete"
@@ -35,7 +38,11 @@ define [
 			@deferred
 
 		render:->
-			console.log "BG Images render"
+			i = _.random this.collection.length - 1
+			@$el.css "background-image", "url(" + @collection.at(i).get("src") + ")"
+			setTimeout =>
+				do @render
+			, 60000
 			@
 
 		showNext:->
